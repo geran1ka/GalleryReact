@@ -1,0 +1,12 @@
+.header {
+  height: 100px;
+  background-color: orangered;
+  display: flex;
+}
+
+.container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

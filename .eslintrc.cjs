@@ -66,12 +66,12 @@ module.exports = {
     ],
     // "arrow-body-style": ["error", "as-needed"],
     "arrow-spacing": ["error"],
-    "no-confusing-arrow": [
-      "error",
-      {
-        allowParens: true,
-      },
-    ],
+    // "no-confusing-arrow": [
+    //   "error",
+    //   {
+    //     allowParens: true,
+    //   },
+    // ],
     "no-useless-computed-key": ["error"],
     "no-useless-rename": ["error"],
     "object-shorthand": ["error", "always"],

@@ -8,7 +8,7 @@ export const API_URL_TOKEN = "https://unsplash.com/oauth/token?";
 export const SECRET_KEY = "Q1nzMywrfQX9LOdOTubXmAMCPBvKeaEFcWQmKBi54tg";
 export const GRANT_TYPE = "authorization_code";
 
-export const API_URL = "https://unsplash.com";
+export const API_URL = "https://api.unsplash.com";
 
 export const APPLICATION_ID = "554637";
 
