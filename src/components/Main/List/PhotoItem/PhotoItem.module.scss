@@ -1,0 +1,32 @@
+.img {
+  width: 100%;
+  border: 2px solid black;
+}
+
+.photo {
+  position: relative;
+  // max-width: 400px;
+  margin: 15px auto;
+  font-size: 20px;
+  color: white;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnLike {
+  position: absolute;
+  order: 200;
+  top: 10px;
+  left: 10px;
+  color: black;
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+}

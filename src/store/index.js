@@ -12,6 +12,6 @@ export const store = configureStore({
     photos: photosReducer,
     photo: photoReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(tokenMiddleware),
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware().concat(tokenMiddleware),
 });

@@ -1,0 +1,15 @@
+.main {
+  background-color: #6d6969;
+  padding: 20px 0;
+  @media (min-width: 580px) {
+    padding: 30px 0;
+  }
+
+  @media (min-width: 820px) {
+    padding: 40px 0;
+  }
+
+  @media (min-width: 1120px) {
+    padding: 80px 0;
+  }
+}
