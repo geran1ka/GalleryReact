@@ -1,0 +1,32 @@
+.btnLike {
+  position: absolute;
+  order: 200;
+  top: 10px;
+  left: 10px;
+  color: white;
+  max-width: 40px;
+  font-size: 14px;
+  font-weight: 700;
+
+  @media (min-width: 580px) {
+    max-width: 50px;
+    font-size: 16px;
+  }
+
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+  }
+  &:hover .text {
+    color: white;
+  }
+}
+
+.text {
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+}

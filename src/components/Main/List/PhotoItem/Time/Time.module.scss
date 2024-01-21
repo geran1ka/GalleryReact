@@ -1,5 +1,8 @@
 .time {
-  padding: 5px;
-  font-size: 20px;
+  font-size: 14px;
   color: white;
+
+  @media (min-width: 580px) {
+    font-size: 16px;
+  }
 }

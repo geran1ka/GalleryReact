@@ -66,6 +66,7 @@ const photosSlice = createSlice({
         state.error = null;
         state.page = action.payload.page;
         state.status = "";
+        // state.like = action.payload.like
       })
       .addCase(fetchPhotos.rejected, (state, action) => {
         console.log("action: ", action);

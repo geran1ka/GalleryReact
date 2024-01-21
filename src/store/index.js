@@ -3,6 +3,7 @@ import tokenReducer from "./token/token.slice";
 import authReducer from "./auth/auth.slice";
 import photosReducer from "./photos/photos.slice";
 import photoReducer from "./photo/photo.slice";
+import likeReducer from "./like/like.slice";
 import { tokenMiddleware } from "./token/token.middleware";
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     auth: authReducer,
     photos: photosReducer,
     photo: photoReducer,
+    like: likeReducer,
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware().concat(tokenMiddleware),

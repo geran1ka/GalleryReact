@@ -49,6 +49,25 @@ body {
   display: flex;
   flex-direction: column;
 }
+/* 
+#popup-root {
+  position: relative;
+  max-width: 1440px;
+  padding: 0 20px;
+  margin: 0 auto;
+
+  @media (min-width: 580px) {
+    padding: 0 30px;
+  }
+
+  @media (min-width: 820px) {
+    padding: 0 40px;
+  }
+
+  @media (min-width: 1120px) {
+    padding: 0 80px;
+  }
+} */
 
 main {
   flex-grow: 1;

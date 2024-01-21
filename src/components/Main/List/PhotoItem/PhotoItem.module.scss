@@ -1,9 +1,4 @@
-.img {
-  width: 100%;
-  border: 2px solid black;
-}
-
-.photo {
+.wrapperPhoto {
   position: relative;
   // max-width: 400px;
   margin: 15px auto;
@@ -11,22 +6,16 @@
   color: white;
 }
 
-.wrapper {
+.img {
+  width: 100%;
+  border: 2px solid black;
+  border-bottom: none;
+}
+
+.description {
   display: flex;
-  flex-direction: column;
-}
-
-.btnLike {
-  position: absolute;
-  order: 200;
-  top: 10px;
-  left: 10px;
-  color: black;
-}
-
-.text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -75%);
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
 }
