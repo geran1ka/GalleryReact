@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { API_URL } from "../../api/const";
 
 export const fetchAuth = createAsyncThunk(
   "fetch/fetchAuth",
   async (_, { getState }) => {
     const token = getState().token.token;
-
+    console.log("token: ", token);
     if (!token) return;
 
     const response = await fetch(`${API_URL}/me`, {

@@ -1,6 +1,16 @@
-export const tokenMiddleware = (store) => (next) => (action) => {
-  console.log(action.type);
+import { setToken } from "../../api/token";
+import { updateToken } from "./token.slice";
 
+export const tokenMiddleware = (store) => (next) => async (action) => {
+  console.log("tokenMiddleware: ");
 
-  // next(action);
+  if (action.type === "token/updateToken") {
+    updateToken(await action.payload);
+  }
+
+  if (action.type === "removeToken") {
+    setToken("");
+  }
+
+  next(action);
 };

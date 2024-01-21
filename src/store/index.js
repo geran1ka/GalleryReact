@@ -4,7 +4,7 @@ import authReducer from "./auth/auth.slice";
 import photosReducer from "./photos/photos.slice";
 import photoReducer from "./photo/photo.slice";
 import likeReducer from "./like/like.slice";
-import { tokenMiddleware } from "./token/token.middleware";
+// import { tokenMiddleware } from "./token/token.middleware";
 
 export const store = configureStore({
   reducer: {
