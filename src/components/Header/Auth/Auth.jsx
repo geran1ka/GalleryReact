@@ -1,16 +1,17 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import s from "./Auth.module.scss";
 import { useAuth } from "../../../hooks/useAuth";
 import { PostLoader } from "../../../UI/PostLoader/PostLoader";
-import { removeToken } from "../../../store/token/token.slice";
+import { fetchToken, removeToken } from "../../../store/token/token.slice";
 import { urlAuth } from "../../../api/auth";
 
 export const Auth = () => {
   const dispatch = useDispatch();
   const [showLogout, setShowLogout] = useState(false);
   const [auth, loading, clearAuth] = useAuth();
-  console.log("auth: ", auth);
+  const token = useSelector((state) => state.token.token);
+  const tokenLoading = useSelector((state) => state.token.loading);
 
   const getOut = () => {
     setShowLogout(!showLogout);
@@ -22,8 +23,14 @@ export const Auth = () => {
     clearAuth();
   };
 
+  useEffect(() => {
+    if (!token && !tokenLoading) {
+      dispatch(fetchToken());
+    }
+  }, [dispatch, token]);
+
   return (
-    <div className={s.container}>
+    <div className={s.authWrapper}>
       {loading ? (
         <PostLoader />
       ) : auth?.name ? (
@@ -38,7 +45,6 @@ export const Auth = () => {
         </button>
       ) : (
         <a className={s.link} href={urlAuth}>
-          {/* <LoginIcon className={style.svg} /> */}
           <svg
             width="50px"
             height="50px"
@@ -69,66 +75,3 @@ export const Auth = () => {
     </div>
   );
 };
-
-//   {
-//     "id": "Rfqph9KpJB0",
-//     "updated_at": "2024-01-20T08:10:02Z",
-//     "username": "geran1ka",
-//     "name": "Roman Khoruzhy",
-//     "first_name": "Roman",
-//     "last_name": "Khoruzhy",
-//     "twitter_username": null,
-//     "portfolio_url": null,
-//     "bio": null,
-//     "location": null,
-//     "links": {
-//         "self": "https://api.unsplash.com/users/geran1ka",
-//         "html": "https://unsplash.com/@geran1ka",
-//         "photos": "https://api.unsplash.com/users/geran1ka/photos",
-//         "likes": "https://api.unsplash.com/users/geran1ka/likes",
-//         "portfolio": "https://api.unsplash.com/users/geran1ka/portfolio",
-//         "following": "https://api.unsplash.com/users/geran1ka/following",
-//         "followers": "https://api.unsplash.com/users/geran1ka/followers"
-//     },
-//     "profile_image": {
-//         "small": "https://images.unsplash.com/profile-1705605180128-a58b505b2b96image?ixlib=rb-4.0.3\u0026crop=faces\u0026fit=crop\u0026w=32\u0026h=32",
-//         "medium": "https://images.unsplash.com/profile-1705605180128-a58b505b2b96image?ixlib=rb-4.0.3\u0026crop=faces\u0026fit=crop\u0026w=64\u0026h=64",
-//         "large": "https://images.unsplash.com/profile-1705605180128-a58b505b2b96image?ixlib=rb-4.0.3\u0026crop=faces\u0026fit=crop\u0026w=128\u0026h=128"
-//     },
-//     "instagram_username": null,
-//     "total_collections": 0,
-//     "total_likes": 1,
-//     "total_photos": 0,
-//     "total_promoted_photos": 0,
-//     "accepted_tos": false,
-//     "for_hire": false,
-//     "social": {
-//         "instagram_username": null,
-//         "portfolio_url": null,
-//         "twitter_username": null,
-//         "paypal_email": null
-//     },
-//     "followed_by_user": false,
-//     "photos": [],
-//     "badge": null,
-//     "tags": {
-//         "custom": [],
-//         "aggregated": []
-//     },
-//     "followers_count": 0,
-//     "following_count": 0,
-//     "allow_messages": true,
-//     "numeric_id": 15394373,
-//     "downloads": 0,
-//     "meta": {
-//         "index": false
-//     },
-//     "uid": "Rfqph9KpJB0",
-//     "confirmed": true,
-//     "uploads_remaining": 10,
-//     "unlimited_uploads": false,
-//     "email": "pantera_vrn@mail.ru",
-//     "dmca_verification": "unverified",
-//     "unread_in_app_notifications": false,
-//     "unread_highlight_notifications": false
-// }

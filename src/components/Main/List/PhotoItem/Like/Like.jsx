@@ -12,17 +12,16 @@ export const Like = ({ likes, liked, id }) => {
 
   const handleToggleLike = () => {
     if (!token) {
-      console.log("!token");
       return setIsShowModal(true);
     } else {
-      console.log("token");
       setIsShowModal(false);
       if (isLikePhoto) {
         setLikeCount(likeCount - 1);
-        setIsLikePhoto(!liked);
-      } else {
+        setIsLikePhoto(!isLikePhoto);
+      }
+      if (!isLikePhoto) {
         setLikeCount(likeCount + 1);
-        setIsLikePhoto(!liked);
+        setIsLikePhoto(!isLikePhoto);
       }
     }
   };

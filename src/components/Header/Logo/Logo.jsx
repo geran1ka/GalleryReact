@@ -1,5 +1,4 @@
 import s from "./Logo.module.scss";
-// import LogoIcon from "./logo.svg?react";
 
 export const Logo = () => (
   <a className={s.link} href="/">

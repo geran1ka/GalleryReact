@@ -32,7 +32,6 @@ export const ErrorAuth = ({ text, closePopup }) => {
 
   return ReactDOM.createPortal(
     <div className={s.popup} ref={overlayRef}>
-      {/* <p className={style.content}>{error.response.status}</p> */}
       <p className={s.content}>
         {text
           ? text

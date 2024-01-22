@@ -1,3 +1,10 @@
+.authWrapper {
+  position: relative;
+  grid-area: profile;
+  justify-self: end;
+  min-width: 50px;
+}
+
 .btn {
   display: flex;
   justify-content: space-between;
@@ -11,33 +18,19 @@
   align-items: center;
 }
 
-// .container {
-//   position: relative;
-//   display: block;
-//   text-align: center;
-// }
-
-.logout {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: var(--orange);
-  border: 0;
-  color: var(--white);
-  padding: 4px;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
 .img {
   border-radius: 10px;
-  width: 50px;
-  height: 50px;
+  width: 32px;
+  height: 32px;
   object-fit: cover;
+
+  @media (min-width: 820px) {
+    width: 50px;
+    height: 50px;
+  }
 }
 
-.authLink {
+.link {
   display: block;
   width: 30px;
   height: 30px;
@@ -45,24 +38,47 @@
   border-radius: 50%;
   outline-offset: 2px;
   transition: outline-color 0.36s ease-in-out;
+
+  &:hover {
+    outline-color: red;
+  }
+
+  &:focus {
+    outline-color: white;
+  }
+
+  &:active {
+    outline-color: violet;
+  }
 }
 
-.authLink:hover {
-  outline-color: var(--orange);
-}
+.logout {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
 
-.authLink:focus {
-  outline-color: var(--orange);
-}
+  &:hover {
+    color: white;
+    background-color: black;
+  }
 
-.authLink:active {
-  outline-color: var(--orange);
-}
+  &:active {
+    transform: scale(1.1);
+  }
 
-.svg {
-  width: 100%;
-  height: 100%;
-  color: var(--orange);
+  @media (min-width: 580px) {
+    top: 80%;
+  }
 }
 
 @media (min-width: 768px) {

@@ -12,10 +12,16 @@ export const useAuth = () => {
   const error = useSelector((state) => state.auth.error);
 
   useEffect(() => {
+    console.log("useEffectfetchAuth1");
+    if (!token) return;
     dispatch(fetchAuth());
+    console.log("useEffectfetchAuth2");
   }, [dispatch, token]);
 
-  const clearAuth = () => dispatch(authLogout());
+  const clearAuth = () => {
+    dispatch(authLogout());
+    localStorage.removeItem("tokenGallery");
+  };
 
   return [auth, loading, clearAuth, error];
 };
