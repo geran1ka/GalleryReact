@@ -20,7 +20,7 @@ export const PhotoItem = ({ photo }) => {
           <User user={photo.user} />
           <Time data={photo.created_at} />
         </div>
-        <Like likes={photo.likes} id={photo.id} liked={photo.liked_bu_user} />
+        <Like likes={photo.likes} id={photo.id} liked={photo.liked_by_user} />
       </div>
     </>
   );

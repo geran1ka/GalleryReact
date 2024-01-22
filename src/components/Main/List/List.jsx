@@ -7,7 +7,6 @@ import { useRef } from "react";
 import { PhotoItem } from "./PhotoItem/PhotoItem";
 import { PostLoader } from "../../../UI/PostLoader/PostLoader";
 import { Error } from "../../../UI/Error/Error";
-import { Outlet } from "react-router-dom";
 
 export const List = () => {
   const dispatch = useDispatch();

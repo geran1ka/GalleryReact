@@ -37,7 +37,9 @@
   outline: 2px solid transparent;
   border-radius: 50%;
   outline-offset: 2px;
-  transition: outline-color 0.36s ease-in-out;
+  transition:
+    outline-color 0.3s ease-in-out,
+    transform 0.3 ease-in-out;
 
   &:hover {
     outline-color: red;
@@ -49,6 +51,7 @@
 
   &:active {
     outline-color: violet;
+    transform: scale(1.2);
   }
 }
 
