@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { PhotoItem } from "./PhotoItem/PhotoItem";
 import { PostLoader } from "../../../UI/PostLoader/PostLoader";
 import { Error } from "../../../UI/Error/Error";
+import { Container } from "../../Container/Container";
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -47,21 +48,23 @@ export const List = () => {
   if (error) return <Error error={error} status={status} />;
 
   return (
-    <>
-      {photos && (
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className={s.myMasonryGrid}
-          columnClassName={s.myMasonryGridColumn}>
-          {photos.map((photo) => (
-            <li key={photo.id} className={s.li}>
-              <PhotoItem photo={photo} />
-            </li>
-          ))}
-          {loading && <PostLoader />}
-          <li ref={endList} className={s.end}></li>
-        </Masonry>
-      )}
-    </>
+    <section>
+      <Container>
+        {photos && (
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className={s.myMasonryGrid}
+            columnClassName={s.myMasonryGridColumn}>
+            {photos.map((photo) => (
+              <li key={photo.id} className={s.li}>
+                <PhotoItem photo={photo} />
+              </li>
+            ))}
+            {loading && <PostLoader />}
+            <li ref={endList} className={s.end}></li>
+          </Masonry>
+        )}
+      </Container>
+    </section>
   );
 };
