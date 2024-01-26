@@ -19,6 +19,10 @@ export const ErrorAuth = ({ text, closePopup }) => {
       console.log("closePopup");
       closePopup();
     }
+
+    setTimeout(() => {
+      closePopup();
+    }, 5000);
   };
 
   useEffect(() => {

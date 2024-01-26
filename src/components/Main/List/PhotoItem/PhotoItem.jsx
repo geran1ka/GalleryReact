@@ -3,11 +3,12 @@ import s from "./PhotoItem.module.scss";
 import { Time } from "./Time/Time";
 import { User } from "./User/User";
 import { Like } from "./Like/Like";
+import { Link } from "react-router-dom";
 export const PhotoItem = ({ photo }) => {
   return (
     <>
       <div className={s.wrapperPhoto} id={photo.id}>
-        <a href={`photo/${photo.id}`}>
+        <Link to={`photo/${photo.id}`}>
           <ImgLoad
             className={s.img}
             src={photo.urls.small}
@@ -15,7 +16,7 @@ export const PhotoItem = ({ photo }) => {
             width={photo.width}
             height={photo.height}
           />
-        </a>
+        </Link>
         <div className={s.description}>
           <User user={photo.user} />
           <Time data={photo.created_at} />

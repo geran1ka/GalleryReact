@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import s from "./Logo.module.scss";
 
 export const Logo = () => (
-  <a className={s.link} href="/">
+  <Link className={s.link} to="/">
     <svg
       className={s.logo}
       width="32"
@@ -13,5 +14,5 @@ export const Logo = () => (
         fillRule="nonzero"
       />
     </svg>
-  </a>
+  </Link>
 );
