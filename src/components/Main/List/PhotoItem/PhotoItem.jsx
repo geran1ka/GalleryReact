@@ -1,8 +1,8 @@
 import { ImgLoad } from "../../../../UI/ImgLoad/ImgLoad";
 import s from "./PhotoItem.module.scss";
-import { Time } from "./Time/Time";
-import { User } from "./User/User";
-import { Like } from "./Like/Like";
+import { Time } from "../../../Time/Time";
+import { User } from "../../../User/User";
+import { Like } from "../../../Like/Like";
 import { Link } from "react-router-dom";
 export const PhotoItem = ({ photo }) => {
   return (
@@ -21,7 +21,12 @@ export const PhotoItem = ({ photo }) => {
           <User user={photo.user} />
           <Time data={photo.created_at} />
         </div>
-        <Like likes={photo.likes} id={photo.id} liked={photo.liked_by_user} />
+        <Like
+          className={s.like}
+          likes={photo.likes}
+          id={photo.id}
+          liked={photo.liked_by_user}
+        />
       </div>
     </>
   );

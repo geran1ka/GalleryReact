@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import s from "./Like.module.scss";
 import LikeIcon from "./like.svg?react";
 import { useDispatch, useSelector } from "react-redux";
-import { ErrorAuth } from "../../../../Header/Auth/ErrorAuth/ErrorAuth";
+import { ErrorAuth } from "../Header/Auth/ErrorAuth/ErrorAuth";
 import {
   fetchDisLikedPhoto,
   fetchLikedPhoto,
-} from "../../../../../store/like/like.slice";
+} from "../../store/like/like.slice";
 import classNames from "classnames";
 
-export const Like = ({ likes, liked, id }) => {
+export const Like = ({ likes, liked, id, className }) => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
   const [likeCount, setLikeCount] = useState(likes);
@@ -48,7 +48,7 @@ export const Like = ({ likes, liked, id }) => {
   return (
     <>
       <button
-        className={classNames(s.btnLike, isLikePhoto && s.liked)}
+        className={classNames(s.btnLike, isLikePhoto && s.liked, className)}
         type="button"
         onClick={handleToggleLike}
         aria-label={isLikePhoto ? "Поставить dislike" : "Поставить like"}>

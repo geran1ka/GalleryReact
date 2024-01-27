@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { List } from "./components/Main/List/List";
 import { NotFound } from "./components/NotFound/NotFound";
@@ -17,15 +21,8 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/auth",
-    element: (
-      <>
-        <Header />
-        <main>
-          <List />
-        </main>
-      </>
-    ),
+    // path: "/auth",
+    // element: <Navigate to="/" />,
   },
   {
     path: "/photo/:id",

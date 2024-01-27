@@ -1,16 +1,25 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { API_URL } from "../../api/const";
+import { ACCESS_KEY, API_URL } from "../../api/const";
 
-const fetchPhoto = createAsyncThunk(
+export const fetchPhoto = createAsyncThunk(
   `fetch/fetchPhoto`,
   async (photoId, { getState }) => {
     const token = getState().token.token;
 
-    const response = await fetch(`${API_URL}/photos/${photoId}`, {
-      headers: {
-        Autorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `${API_URL}/photos/${photoId}`,
+      token
+        ? {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        : {
+            headers: {
+              Authorization: `Client-ID ${ACCESS_KEY}`,
+            },
+          },
+    );
 
     if (!response.ok) {
       throw new Error("Не удалось загрузить фотографию");
@@ -33,11 +42,14 @@ const photoSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPhoto.pending, (state) => {
+        state.photo = {};
         state.loading = true;
         state.error = "";
       })
       .addCase(fetchPhoto.fulfilled, (state, action) => {
+        console.log("action: ", action);
         state.photo = action.payload;
+        console.log("state.photo: ", state.photo);
         state.loading = false;
         state.error = "";
       })

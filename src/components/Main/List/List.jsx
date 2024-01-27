@@ -20,7 +20,7 @@ export const List = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          dispatch(fetchPhotos());
+          // dispatch(fetchPhotos());
         }
       },
       {

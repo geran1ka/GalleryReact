@@ -19,3 +19,24 @@
   align-items: center;
   border: 2px solid black;
 }
+
+.like {
+  position: absolute;
+  order: 200;
+  top: 10px;
+  left: 10px;
+
+  & span {
+    color: black;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.liked {
+  & span {
+    color: aqua;
+  }
+}
