@@ -1,4 +1,5 @@
 .btnLike {
+  position: relative;
   color: white;
   max-width: 40px;
   font-size: 14px;
@@ -8,12 +9,12 @@
     transform 0.3s ease-in-out;
 
   & span {
-    color: black;
     position: absolute;
+    color: black;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -70%);
-
+    width: 100%;
     transition:
       color 0.3s ease-in-out,
       transform 0.3s ease-in-out;
@@ -32,7 +33,7 @@
   }
 
   @media (min-width: 580px) {
-    max-width: 50px;
+    max-width: 60px;
     font-size: 16px;
   }
 }

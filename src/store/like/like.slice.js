@@ -91,7 +91,8 @@ const likeSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchLikedPhoto.fulfilled, (state, action) => {
-        state.likeCount2 = action.payload.photo.likes;
+        console.log("action: ", action);
+        state.likeCount = action.payload.photo.likes;
         state.likedByUser = action.payload.photo.liked_by_user;
         state.loading = true;
         state.error = null;
@@ -105,7 +106,8 @@ const likeSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDisLikedPhoto.fulfilled, (state, action) => {
-        state.likeCount2 = action.payload.photo.likes;
+        console.log("action: ", action);
+        state.likeCount = action.payload.photo.likes;
         state.likedByUser = action.payload.photo.liked_by_user;
         state.loading = true;
         state.error = null;

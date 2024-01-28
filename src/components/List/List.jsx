@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPhotos } from "../../../store/photos/photos.slice";
 import Masonry from "react-masonry-css";
 import s from "./List.module.scss";
 import { useRef } from "react";
 import { PhotoItem } from "./PhotoItem/PhotoItem";
-import { PostLoader } from "../../../UI/PostLoader/PostLoader";
-import { Error } from "../../../UI/Error/Error";
-import { Container } from "../../Container/Container";
+import { PostLoader } from "../../UI/PostLoader/PostLoader";
+import { Error } from "../../UI/Error/Error";
+import { Container } from "../Container/Container";
+import { changePage, fetchPhotos } from "../../store/photos/photos.slice";
+import { useLocation, useParams } from "react-router-dom";
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -16,11 +17,17 @@ export const List = () => {
   );
   const endList = useRef(null);
 
+  const params = useLocation();
+
+  useEffect(() => {
+    dispatch(changePage(params));
+  }, [dispatch, params]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          // dispatch(fetchPhotos());
+          dispatch(fetchPhotos());
         }
       },
       {
@@ -29,6 +36,7 @@ export const List = () => {
     );
     if (endList.current && !loading) {
       observer.observe(endList.current);
+      console.log("endList.current: ", endList.current);
     }
 
     return () => {

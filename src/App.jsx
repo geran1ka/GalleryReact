@@ -1,12 +1,11 @@
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Header } from "./components/Header/Header";
-import { List } from "./components/Main/List/List";
 import { NotFound } from "./components/NotFound/NotFound";
 import { Photo } from "./components/Photo/Photo";
+import { Search } from "./components/Search/Search";
+import { List } from "./components/List/List";
+import { Favorite } from "./components/Favorite/Favorite";
+import { AuthSuccess } from "./components/AuthSuccess/AuthSuccess";
 
 const router = createBrowserRouter([
   {
@@ -21,11 +20,62 @@ const router = createBrowserRouter([
     ),
   },
   {
-    // path: "/auth",
-    // element: <Navigate to="/" />,
+    path: "/auth/",
+    element: (
+      <>
+        <Header />
+        <main>
+          <AuthSuccess />
+        </main>
+      </>
+    ),
   },
   {
     path: "/photo/:id",
+    element: (
+      <>
+        <Header />
+        <main>
+          <Photo />
+        </main>
+      </>
+    ),
+  },
+  {
+    path: "/search",
+    element: (
+      <>
+        <Header />
+        <main>
+          <Search />
+        </main>
+      </>
+    ),
+  },
+  {
+    path: "/search/photo/:id",
+    element: (
+      <>
+        <Header />
+        <main>
+          <Photo />
+        </main>
+      </>
+    ),
+  },
+  {
+    path: "/favorite",
+    element: (
+      <>
+        <Header />
+        <main>
+          <Favorite />
+        </main>
+      </>
+    ),
+  },
+  {
+    path: "/favorite/photo/:id",
     element: (
       <>
         <Header />

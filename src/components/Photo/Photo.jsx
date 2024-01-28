@@ -16,8 +16,11 @@ export const Photo = () => {
   const dispatch = useDispatch();
   const { photo, loading, error } = useSelector((state) => state.photo);
 
+  const page = useParams();
+  console.log("pageP: ", page);
+
   useEffect(() => {
-    // dispatch(fetchPhoto(id));
+    dispatch(fetchPhoto(id));
   }, [dispatch, id]);
   if (loading) return <PostLoader />;
   if (error) return <Error error={error} />;
@@ -43,7 +46,7 @@ export const Photo = () => {
               liked={photo.liked_by_user}
               className={s.like}
             />
-            <Link to="/" className={s.link}>
+            {/* <Link to="/" className={s.link}>
               <svg
                 className={s.svgLink}
                 xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +66,31 @@ export const Photo = () => {
                   d="M41.11,30.72H32.25l3.87-3.87-2.74-2.73-8.53,8.53,8.53,8.53,2.74-2.73-3.87-3.87h8.86a3.87,3.87,0,1,1,0,7.73H39.18v3.87h1.93a7.73,7.73,0,1,0,0-15.46Z"
                 />
               </svg>
-            </Link>
+            </Link> */}
+            <button
+              type="button"
+              onClick={() => window.history.back()}
+              className={s.link}>
+              <svg
+                className={s.svgLink}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 74.5 73.03">
+                <rect
+                  fill="currentColor"
+                  width="74.5"
+                  height="73.03"
+                  rx="16.46"
+                />
+                <path
+                  fill="currentColor"
+                  d="M37.25,15.26A21.26,21.26,0,1,0,58.51,36.52,21.28,21.28,0,0,0,37.25,15.26Zm0,38.65A17.4,17.4,0,1,1,54.64,36.52,17.42,17.42,0,0,1,37.25,53.91Z"
+                />
+                <path
+                  fill="currentColor"
+                  d="M41.11,30.72H32.25l3.87-3.87-2.74-2.73-8.53,8.53,8.53,8.53,2.74-2.73-3.87-3.87h8.86a3.87,3.87,0,1,1,0,7.73H39.18v3.87h1.93a7.73,7.73,0,1,0,0-15.46Z"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       )}

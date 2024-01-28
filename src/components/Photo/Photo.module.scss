@@ -63,23 +63,10 @@
 }
 
 .like {
-  position: relative;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  grid-area: like;
-  max-width: max-content;
-  justify-self: center;
-
-  & svg {
-    max-width: 40px;
-  }
-
-  & span {
+  & svg + span {
     color: #fff !important;
-    position: static;
     align-self: center;
-    transform: translate(0, 0);
+    transform: translate(50%, -70%);
     order: -1;
   }
 

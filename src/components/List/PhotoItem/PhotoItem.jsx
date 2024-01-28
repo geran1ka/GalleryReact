@@ -1,9 +1,10 @@
-import { ImgLoad } from "../../../../UI/ImgLoad/ImgLoad";
 import s from "./PhotoItem.module.scss";
-import { Time } from "../../../Time/Time";
-import { User } from "../../../User/User";
-import { Like } from "../../../Like/Like";
+
 import { Link } from "react-router-dom";
+import { ImgLoad } from "../../../UI/ImgLoad/ImgLoad";
+import { Like } from "../../Like/Like";
+import { Time } from "../../Time/Time";
+import { User } from "../../User/User";
 export const PhotoItem = ({ photo }) => {
   return (
     <>
