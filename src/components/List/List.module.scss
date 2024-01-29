@@ -21,3 +21,24 @@
 .end {
   list-style: none;
 }
+
+.favorite {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.title {
+  font-size: 26px;
+}
+
+.description {
+  font-size: 16px;
+
+  @media (min-width: 580px) {
+    font-size: 20px;
+  }
+}

@@ -4,7 +4,7 @@ import authReducer from "./auth/auth.slice";
 import photosReducer from "./photos/photos.slice";
 import photoReducer from "./photo/photo.slice";
 import likeReducer from "./like/like.slice";
-import favoriteReducer from "./favorite/favorite.slice";
+// import favoriteReducer from "./favorite/favorite.slice";
 // import { tokenMiddleware } from "./token/token.middleware";
 
 export const store = configureStore({
@@ -14,7 +14,7 @@ export const store = configureStore({
     photos: photosReducer,
     photo: photoReducer,
     like: likeReducer,
-    favorite: favoriteReducer,
+    // favorite: favoriteReducer,
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware().concat(tokenMiddleware),

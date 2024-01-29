@@ -2,9 +2,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { NotFound } from "./components/NotFound/NotFound";
 import { Photo } from "./components/Photo/Photo";
-import { Search } from "./components/Search/Search";
+// import { Search } from "./components/Search/Search";
 import { List } from "./components/List/List";
-import { Favorite } from "./components/Favorite/Favorite";
+// import { Favorite } from "./components/Favorite/Favorite";
 import { AuthSuccess } from "./components/AuthSuccess/AuthSuccess";
 
 const router = createBrowserRouter([
@@ -47,7 +47,8 @@ const router = createBrowserRouter([
       <>
         <Header />
         <main>
-          <Search />
+          {/* <Search /> */}
+          <List />
         </main>
       </>
     ),
@@ -69,7 +70,8 @@ const router = createBrowserRouter([
       <>
         <Header />
         <main>
-          <Favorite />
+          {/* <Favorite /> */}
+          <List />
         </main>
       </>
     ),

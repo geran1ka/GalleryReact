@@ -7,8 +7,15 @@ import { PhotoItem } from "./PhotoItem/PhotoItem";
 import { PostLoader } from "../../UI/PostLoader/PostLoader";
 import { Error } from "../../UI/Error/Error";
 import { Container } from "../Container/Container";
-import { changePage, fetchPhotos } from "../../store/photos/photos.slice";
+import {
+  changePage,
+  fetchFavoritePhotosList,
+  fetchPhotos,
+  fetchSearch,
+} from "../../store/photos/photos.slice";
 import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -16,18 +23,31 @@ export const List = () => {
     (state) => state.photos,
   );
   const endList = useRef(null);
-
+  const [searchParam] = useSearchParams();
+  const search = searchParam.get("search");
   const params = useLocation();
+  const [auth] = useAuth();
 
   useEffect(() => {
     dispatch(changePage(params));
   }, [dispatch, params]);
 
   useEffect(() => {
+    if (params.pathname === "/favorite") {
+      dispatch(fetchFavoritePhotosList(auth.username));
+    }
+  }, [dispatch, auth, params.pathname]);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          dispatch(fetchPhotos());
+          if (params.pathname === "/search") {
+            dispatch(fetchSearch(search));
+          }
+          if (params.pathname === "/") {
+            dispatch(fetchPhotos());
+          }
         }
       },
       {
@@ -43,7 +63,7 @@ export const List = () => {
         observer.unobserve(endList.current);
       }
     };
-  }, [dispatch, endList.current]);
+  }, [dispatch, endList.current, params.pathname]);
 
   const breakpointColumnsObj = {
     default: 4,
@@ -70,6 +90,12 @@ export const List = () => {
             {loading && <PostLoader />}
             <li ref={endList} className={s.end}></li>
           </Masonry>
+        )}
+        {!photos.length && params.pathname === "/favorite" && (
+          <div className={s.favorite}>
+            <h2 className={s.title}>Избранное</h2>
+            <p className={s.description}>К сожалению здесь пока нет ничего!</p>
+          </div>
         )}
       </Container>
     </section>
