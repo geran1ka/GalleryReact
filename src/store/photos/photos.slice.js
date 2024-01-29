@@ -74,8 +74,6 @@ export const fetchFavoritePhotosList = createAsyncThunk(
   async (username, { getState, rejectWithValue }) => {
     try {
       const token = getState().token.token;
-
-      if (!token) return;
       const response = await fetch(
         `${API_URL}/users/${username}/likes?client_id=${ACCESS_KEY}`,
         {
@@ -103,7 +101,9 @@ export const fetchFavoritePhotosList = createAsyncThunk(
 
 const initialState = {
   photos: [],
-  loading: false,
+  loadingPhoto: false,
+  loadingSearch: false,
+  loadingFavorite: false,
   error: null,
   page: 1,
   pageSearch: 1,
@@ -130,25 +130,24 @@ const photosSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPhotos.pending, (state) => {
-        state.loading = true;
+        state.loadingPhoto = true;
         state.error = null;
         state.status = "";
       })
       .addCase(fetchPhotos.fulfilled, (state, action) => {
         state.photos = [...state.photos, ...action.payload.photos];
-        state.loading = false;
+        state.loadingPhoto = false;
         state.error = null;
         state.page = action.payload.page;
-        // state.pageSearch = 1;
         state.status = "";
       })
       .addCase(fetchPhotos.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingPhoto = false;
         state.error = action.payload.error;
         state.status = action.payload.status;
       })
       .addCase(fetchSearch.pending, (state) => {
-        state.loading = true;
+        state.loadingSearch = true;
         state.error = null;
         state.status = "";
       })
@@ -159,28 +158,27 @@ const photosSlice = createSlice({
           state.photos = action.payload.photos.results;
           state.search = action.meta.arg;
         }
-        state.loading = false;
+        state.loadingSearch = false;
         state.error = null;
         state.pageSearch = action.payload.page;
         state.status = "";
       })
       .addCase(fetchSearch.rejected, (state, action) => {
-        console.log("action: ", action);
-        state.loading = false;
+        state.loadingSearch = false;
         state.error = action.payload.error;
         state.status = action.payload.status;
       })
       .addCase(fetchFavoritePhotosList.pending, (state) => {
-        state.loading = true;
+        state.loadingFavorite = true;
         state.error = null;
       })
       .addCase(fetchFavoritePhotosList.fulfilled, (state, action) => {
         state.photos = action.payload;
-        state.loading = false;
+        state.loadingFavorite = false;
         state.error = null;
       })
       .addCase(fetchFavoritePhotosList.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingFavorite = false;
         state.error = action.error;
       });
   },

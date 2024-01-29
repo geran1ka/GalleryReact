@@ -19,7 +19,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export const List = () => {
   const dispatch = useDispatch();
-  const { photos, loading, error, status } = useSelector(
+  const { photos, loadingPhoto, loadingSearch, error, status } = useSelector(
     (state) => state.photos,
   );
   const endList = useRef(null);
@@ -54,7 +54,7 @@ export const List = () => {
         rootMargin: "200px",
       },
     );
-    if (endList.current && !loading) {
+    if (endList.current && !loadingPhoto && !loadingSearch) {
       observer.observe(endList.current);
     }
 
@@ -87,7 +87,7 @@ export const List = () => {
                 <PhotoItem photo={photo} />
               </li>
             ))}
-            {loading && <PostLoader />}
+            {(loadingPhoto || loadingSearch) && <PostLoader />}
             <li ref={endList} className={s.end}></li>
           </Masonry>
         )}

@@ -22,10 +22,8 @@ export const fetchLikedPhoto = createAsyncThunk(
       }
 
       const data = await response.json();
-      console.log("data: ", data);
       return data;
     } catch (error) {
-      console.log("error: ", error);
       return error;
     }
   },
@@ -52,10 +50,8 @@ export const fetchDisLikedPhoto = createAsyncThunk(
       }
 
       const data = await response.json();
-      console.log("data: ", data);
       return data;
     } catch (error) {
-      console.log("error: ", error);
       return error;
     }
   },
@@ -74,7 +70,6 @@ const likeSlice = createSlice({
   initialState,
   reducers: {
     setLikePhoto: (state, action) => {
-      console.log("action: ", action);
       state.likeCount = action.payload;
     },
     likedPhoto: (state) => {
@@ -91,7 +86,6 @@ const likeSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchLikedPhoto.fulfilled, (state, action) => {
-        console.log("action: ", action);
         state.likeCount = action.payload.photo.likes;
         state.likedByUser = action.payload.photo.liked_by_user;
         state.loading = true;
@@ -106,7 +100,6 @@ const likeSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDisLikedPhoto.fulfilled, (state, action) => {
-        console.log("action: ", action);
         state.likeCount = action.payload.photo.likes;
         state.likedByUser = action.payload.photo.liked_by_user;
         state.loading = true;

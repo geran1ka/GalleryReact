@@ -5,6 +5,7 @@ export const fetchAuth = createAsyncThunk(
   "fetch/fetchAuth",
   async (_, { getState }) => {
     const token = getState().token.token;
+
     if (!token) return;
 
     const response = await fetch(`${API_URL}/me`, {

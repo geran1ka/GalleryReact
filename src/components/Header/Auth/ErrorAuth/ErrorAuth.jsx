@@ -8,15 +8,12 @@ export const ErrorAuth = ({ text, closePopup }) => {
   const error = useSelector((state) => state.auth.error);
   const overlayRef = useRef(null);
   const hadleClick = (e) => {
-    console.log("click");
     const target = e.target;
-    console.log("target: ", target);
     if (
       target === overlayRef.current ||
       target.closest(".popupClose") ||
       e.keyCode === 27
     ) {
-      console.log("closePopup");
       closePopup();
     }
 
