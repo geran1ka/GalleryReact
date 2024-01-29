@@ -6,6 +6,7 @@ import { Photo } from "./components/Photo/Photo";
 import { List } from "./components/List/List";
 // import { Favorite } from "./components/Favorite/Favorite";
 import { AuthSuccess } from "./components/AuthSuccess/AuthSuccess";
+import { Navigate } from "react-router-dom/dist/umd/react-router-dom.development";
 
 const router = createBrowserRouter([
   {
@@ -21,14 +22,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/auth",
-    element: (
-      <>
-        <Header />
-        <main>
-          <AuthSuccess />
-        </main>
-      </>
-    ),
+    element: <Navigate to="/" />,
+    // element: (
+    //   <>
+    //     <Header />
+    //     <main>
+    //       <AuthSuccess />
+    //     </main>
+    //   </>
+    // ),
   },
   {
     path: "/photo/:id",
