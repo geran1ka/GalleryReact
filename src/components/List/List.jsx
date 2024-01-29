@@ -8,7 +8,7 @@ import { PostLoader } from "../../UI/PostLoader/PostLoader";
 import { Error } from "../../UI/Error/Error";
 import { Container } from "../Container/Container";
 import { changePage, fetchPhotos } from "../../store/photos/photos.slice";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -31,12 +31,11 @@ export const List = () => {
         }
       },
       {
-        rootMargin: "100px",
+        rootMargin: "200px",
       },
     );
     if (endList.current && !loading) {
       observer.observe(endList.current);
-      console.log("endList.current: ", endList.current);
     }
 
     return () => {

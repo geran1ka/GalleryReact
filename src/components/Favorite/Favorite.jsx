@@ -15,7 +15,6 @@ import { useAuth } from "../../hooks/useAuth";
 export const Favorite = () => {
   const dispatch = useDispatch();
   const [auth] = useAuth();
-  console.log("auth: ", auth);
   const { favoritePhotosList, loading, error } = useSelector(
     (state) => state.favorite,
   );

@@ -1,12 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getUrlToken } from "../../api/token";
-import { useNavigate } from "react-router-dom";
 
 export const setToken = (token) => {
   const oldToken = localStorage.getItem("tokenGallery");
-  console.log("oldToken: ", oldToken);
-  console.log("token: ", token);
-
   if (oldToken === token) return;
   localStorage.setItem("tokenGallery", token);
 };
@@ -29,7 +25,6 @@ export const fetchToken = createAsyncThunk(
       const data = await response.json();
       token = data.access_token;
       setToken(token);
-      // useNavigate("/");
       return token;
     }
     return token;
@@ -47,7 +42,6 @@ const tokenSlice = createSlice({
   initialState,
   reducers: {
     updateToken: (state, action) => {
-      console.log("action: ", action);
       state.token = action.token;
     },
     removeToken: (state) => {

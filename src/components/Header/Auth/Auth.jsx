@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Auth.module.scss";
 import { useAuth } from "../../../hooks/useAuth";
 import { PostLoader } from "../../../UI/PostLoader/PostLoader";
 import { fetchToken, removeToken } from "../../../store/token/token.slice";
 import { urlAuth } from "../../../api/auth";
+import { Link } from "react-router-dom";
+import classNames from "classnames";
+import { useClickOutside } from "../../../hooks/useClickOutside";
 
 export const Auth = () => {
   const dispatch = useDispatch();
@@ -12,7 +15,10 @@ export const Auth = () => {
   const [auth, loading, clearAuth] = useAuth();
   const token = useSelector((state) => state.token.token);
   const tokenLoading = useSelector((state) => state.token.loading);
-
+  const menuRef = useRef(null);
+  useClickOutside(menuRef, () => {
+    if (showLogout) setShowLogout(false);
+  });
   const getOut = () => {
     setShowLogout(!showLogout);
   };
@@ -40,12 +46,13 @@ export const Auth = () => {
             src={auth.profile_image.small}
             title={auth.username}
             alt={`Аватар ${auth.username}`}
+            ref={menuRef}
           />
           <span className={s.name}>{auth.username}</span>
         </button>
       ) : (
         <a
-          className={s.link}
+          className={s.linkAuth}
           href={urlAuth}
           aria-label="Авторизоваться в приложении">
           <svg
@@ -73,11 +80,22 @@ export const Auth = () => {
           </svg>
         </a>
       )}
-      {showLogout && (
-        <button className={s.logout} onClick={logOut}>
-          Выйти
-        </button>
-      )}
+      {
+        <nav className={classNames(s.menu, showLogout && s.active)}>
+          <ul className={s.list}>
+            <li className={s.item}>
+              <Link className={s.link} to="/favorite">
+                Избранное
+              </Link>
+            </li>
+            <li className={s.item}>
+              <button className={s.link} onClick={logOut}>
+                Выйти
+              </button>
+            </li>
+          </ul>
+        </nav>
+      }
     </div>
   );
 };

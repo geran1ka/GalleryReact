@@ -26,15 +26,12 @@ export const Search = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log("entries: ", entries);
-        console.log("entries[0].isIntersecting: ", entries[0].isIntersecting);
-
         if (entries[0].isIntersecting) {
           dispatch(fetchSearch(search));
         }
       },
       {
-        rootMargin: "100px",
+        rootMargin: "200px",
       },
     );
     if (endList.current && !loading) {

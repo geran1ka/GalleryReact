@@ -30,7 +30,7 @@
   }
 }
 
-.link {
+.linkAuth {
   display: block;
   width: 30px;
   height: 30px;
@@ -56,9 +56,9 @@
 }
 
 .logout {
-  position: absolute;
-  top: 110%;
-  right: 0;
+  // position: absolute;
+  // top: 110%;
+  // right: 0;
   background-color: transparent;
   border: 1px solid black;
   color: black;
@@ -97,4 +97,63 @@
   color: black;
   font-size: 16px;
   justify-self: end;
+}
+
+.menu {
+  z-index: 100;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  padding: 10px;
+  color: #fff;
+  background-color: rgb(161 140 129);
+  border: 1px solid #6d6969;
+  border-radius: 7px;
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.active {
+  transform: translateY(0px);
+  opacity: 1;
+  visibility: visible;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  list-style-type: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+
+  @media (min-width: 820px) {
+    font-size: 16px;
+  }
+}
+
+.link {
+  color: #fff;
+  display: block;
+  width: 100%;
+  transition:
+    color 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+  }
+
+  &:active {
+    transform: scale(1.1);
+  }
 }

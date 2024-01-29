@@ -1,15 +1,40 @@
 import s from "./AuthSuccess.module.scss";
 import { Container } from "../Container/Container";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getPadTime } from "../../helpers/getPadTime";
+// eslint-disable-next-line max-len
+import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 
 export const AuthSuccess = () => {
+  const [timeLeft, setTime] = useState(5);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(timeLeft >= 1 ? timeLeft - 1 : 0);
+    }, 1000);
+    if (!timeLeft) navigate("/");
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [navigate, timeLeft]);
+
   return (
     <section>
       <Container>
         <div className={s.wrapper}>
-          <p className={s.text}>
+          <h2 className={s.title}>
             Поздравляем с успешной авторизацией в приложении Gallery!
+          </h2>
+          <p className={s.text}>
+            Вы автоматические будете перенаправлены на главную страницу через :
           </p>
+          <div className={s.timer}>
+            <span>00</span>
+            <span>:</span>
+            <span>{getPadTime(timeLeft)}</span>
+          </div>
 
           <Link className={s.link} to="/">
             Перейти на главную страницу
@@ -19,20 +44,3 @@ export const AuthSuccess = () => {
     </section>
   );
 };
-
-{
-  /* <div>
-<div>
-  <div>
-    <h2>Oops!</h2>
-    <h6>Похоже вы ошиблись, здесь материал был удален!</h6>
-    <h2>
-      404
-      <p>Страница не найдена</p>
-    </h2>
-    <a href="index.html">Вернуться домой</a>
-  </div>
-  <p>© 2024 Отслеживание ошибок. Все права защищены |</p>
-</div>
-</div> */
-}

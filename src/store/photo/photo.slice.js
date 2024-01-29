@@ -47,9 +47,7 @@ const photoSlice = createSlice({
         state.error = "";
       })
       .addCase(fetchPhoto.fulfilled, (state, action) => {
-        console.log("action: ", action);
         state.photo = action.payload;
-        console.log("state.photo: ", state.photo);
         state.loading = false;
         state.error = "";
       })
