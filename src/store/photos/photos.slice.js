@@ -44,14 +44,22 @@ export const fetchSearch = createAsyncThunk(
     try {
       const token = getState().token.token;
       let page = getState().photos.pageSearch;
+      // if (!token) return;
       const response = await fetch(
         `${API_URL}/search/photos?per_page=30&page=${page}&query=${search}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
+        token
+          ? {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          : {
+              method: "GET",
+              headers: {
+                Authorization: `Client-ID ${ACCESS_KEY}`,
+              },
+            },
       );
 
       if (!response.ok) {

@@ -19,9 +19,14 @@ import { useAuth } from "../../hooks/useAuth";
 
 export const List = () => {
   const dispatch = useDispatch();
-  const { photos, loadingPhoto, loadingSearch, error, status } = useSelector(
-    (state) => state.photos,
-  );
+  const {
+    photos,
+    loadingPhoto,
+    loadingSearch,
+    loadingFavorite,
+    error,
+    status,
+  } = useSelector((state) => state.photos);
   const endList = useRef(null);
   const [searchParam] = useSearchParams();
   const search = searchParam.get("search");
@@ -91,12 +96,16 @@ export const List = () => {
             <li ref={endList} className={s.end}></li>
           </Masonry>
         )}
-        {!photos.length && params.pathname === "/favorite" && (
-          <div className={s.favorite}>
-            <h2 className={s.title}>Избранное</h2>
-            <p className={s.description}>К сожалению здесь пока нет ничего!</p>
-          </div>
-        )}
+        {!photos.length &&
+          !loadingFavorite &&
+          params.pathname === "/favorite" && (
+            <div className={s.favorite}>
+              <h2 className={s.title}>Избранное</h2>
+              <p className={s.description}>
+                К сожалению здесь пока нет ничего!
+              </p>
+            </div>
+          )}
       </Container>
     </section>
   );

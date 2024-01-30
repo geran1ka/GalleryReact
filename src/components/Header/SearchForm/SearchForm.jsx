@@ -10,7 +10,8 @@ export const SearchForm = () => {
 
     if (searchQuery.trim()) {
       navigate(`/search?search=${encodeURIComponent(searchQuery)}`);
-      e.target.reset;
+      console.log("e.target: ", e.target);
+      e.target.search.value = "";
     }
   };
 
