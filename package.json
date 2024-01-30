@@ -1,8 +1,7 @@
 {
-  "name": "koff-react",
+  "name": "gallery",
   "private": true,
   "version": "0.0.0",
-  "homepage": ".",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
