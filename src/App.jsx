@@ -18,18 +18,20 @@ const router = createBrowserRouter([
         </main>
       </>
     ),
+    children: [
+      {
+        path: "auth",
+        element: (
+          <>
+            <main>
+              <AuthSuccess />
+            </main>
+          </>
+        ),
+      },
+    ],
   },
-  {
-    path: "/auth",
-    element: (
-      <>
-        <Header />
-        <main>
-          <AuthSuccess />
-        </main>
-      </>
-    ),
-  },
+
   {
     path: "/photo/:id",
     element: (
