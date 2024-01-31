@@ -16,7 +16,6 @@ import {
 import { useLocation } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { debounceRaf } from "../../helpers/debounce";
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -40,44 +39,57 @@ export const List = () => {
 
   useEffect(() => {
     if (params.pathname === "/favorite") {
-      console.log("useEffect favorite");
       dispatch(fetchFavoritePhotosList(auth.username));
     }
   }, [dispatch, auth, params.pathname]);
 
   useEffect(() => {
-    console.log("list");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        console.log("entries[0].isIntersecting: ", entries[0].isIntersecting);
-
-        if (entries[0].isIntersecting) {
-          if (params.pathname === "/search") {
-            console.log("useEffect search");
-
-            dispatch(fetchSearch(search));
-          }
-          if (params.pathname === "/") {
-            console.log("useEffect /");
+    if (params.pathname === "/" && !loadingPhoto) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
             dispatch(fetchPhotos());
           }
-        }
-      },
-      {
-        rootMargin: "200px",
-      },
-    );
-    console.log("endList.current: ", endList.current);
-    if (endList.current && !loadingPhoto && !loadingSearch) {
-      observer.observe(endList.current);
-    }
-
-    return () => {
-      if (endList.current) {
-        observer.unobserve(endList.current);
+        },
+        {
+          rootMargin: "200px",
+        },
+      );
+      if (endList.current && !loadingPhoto) {
+        observer.observe(endList.current);
       }
-    };
-  }, [dispatch, endList.current, params.pathname]);
+
+      return () => {
+        if (endList.current) {
+          observer.unobserve(endList.current);
+        }
+      };
+    }
+  }, [dispatch, endList.current, params.pathname, loadingPhoto]);
+
+  useEffect(() => {
+    if (params.pathname === "/search" && !loadingSearch) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            dispatch(fetchSearch(search));
+          }
+        },
+        {
+          rootMargin: "200px",
+        },
+      );
+      if (endList.current && !loadingSearch) {
+        observer.observe(endList.current);
+      }
+
+      return () => {
+        if (endList.current) {
+          observer.unobserve(endList.current);
+        }
+      };
+    }
+  }, [dispatch, endList.current, params.pathname, loadingSearch]);
 
   const breakpointColumnsObj = {
     default: 4,
