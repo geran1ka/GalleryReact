@@ -16,6 +16,7 @@ import {
 import { useLocation } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { debounceRaf } from "../../helpers/debounce";
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -39,18 +40,25 @@ export const List = () => {
 
   useEffect(() => {
     if (params.pathname === "/favorite") {
+      console.log("useEffect favorite");
       dispatch(fetchFavoritePhotosList(auth.username));
     }
   }, [dispatch, auth, params.pathname]);
 
   useEffect(() => {
+    console.log("list");
     const observer = new IntersectionObserver(
       (entries) => {
+        console.log("entries[0].isIntersecting: ", entries[0].isIntersecting);
+
         if (entries[0].isIntersecting) {
           if (params.pathname === "/search") {
+            console.log("useEffect search");
+
             dispatch(fetchSearch(search));
           }
           if (params.pathname === "/") {
+            console.log("useEffect /");
             dispatch(fetchPhotos());
           }
         }
@@ -59,6 +67,7 @@ export const List = () => {
         rootMargin: "200px",
       },
     );
+    console.log("endList.current: ", endList.current);
     if (endList.current && !loadingPhoto && !loadingSearch) {
       observer.observe(endList.current);
     }
